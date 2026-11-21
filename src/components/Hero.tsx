@@ -141,8 +141,9 @@ export default function Hero() {
               <ExternalLink size={16} />
               View Projects
             </a>
-            <a href="/resume.pdf" download className="btn btn-outline">
-              Download CV
+            <a href="#contact" className="btn btn-outline">
+              <Mail size={16} />
+              Contact Me
             </a>
           </motion.div>
 
@@ -155,7 +156,7 @@ export default function Hero() {
           >
             {[
               { icon: <Github size={20} />, label: 'GitHub', href: 'https://github.com/Vimal-5' },
-              { icon: <Linkedin size={20} />, label: 'LinkedIn', href: '#' },
+              { icon: <Linkedin size={20} />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/vimal-vellaiyan/' },
               { icon: <Mail size={20} />, label: 'Email', href: 'mailto:vimalvijay561@gmail.com' },
             ].map((social) => (
               <a
