@@ -1,6 +1,5 @@
 import { useState, useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
-import SkillRing from './SkillRing';
 import { skillCategories } from '../data/skills';
 
 export default function Skills() {
@@ -9,7 +8,7 @@ export default function Skills() {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
 
   const filteredCategories = activeCategory
-    ? skillCategories.filter((c) => c.title === activeCategory)
+    ? skillCategories.filter((category) => category.title === activeCategory)
     : skillCategories;
 
   return (
@@ -21,18 +20,17 @@ export default function Skills() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6 }}
           >
-            What I Know
+            Technical Skills
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 15 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Technologies, tools, and areas I'm continuously developing
+            Technologies and tools I have worked with
           </motion.p>
         </div>
 
-        {/* Category Filters */}
         <motion.div
           initial={{ opacity: 0, y: 15 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -48,104 +46,47 @@ export default function Skills() {
           <button
             onClick={() => setActiveCategory(null)}
             className={`badge ${!activeCategory ? 'badge-cyan' : ''}`}
-            style={{
-              padding: '0.5rem 1rem',
-              cursor: 'pointer',
-              fontSize: 'var(--text-sm)',
-              fontWeight: !activeCategory ? 600 : 400,
-              transition: 'all var(--transition-fast)',
-            }}
+            aria-pressed={!activeCategory}
+            style={{ padding: '0.5rem 1rem', cursor: 'pointer', fontSize: 'var(--text-sm)' }}
           >
             All
           </button>
-          {skillCategories.map((cat) => (
+          {skillCategories.map((category) => (
             <button
-              key={cat.title}
-              onClick={() => setActiveCategory(activeCategory === cat.title ? null : cat.title)}
-              className={`badge ${activeCategory === cat.title ? 'badge-cyan' : ''}`}
-              style={{
-                padding: '0.5rem 1rem',
-                cursor: 'pointer',
-                fontSize: 'var(--text-sm)',
-                fontWeight: activeCategory === cat.title ? 600 : 400,
-                transition: 'all var(--transition-fast)',
-              }}
+              key={category.title}
+              onClick={() => setActiveCategory(activeCategory === category.title ? null : category.title)}
+              className={`badge ${activeCategory === category.title ? 'badge-cyan' : ''}`}
+              aria-pressed={activeCategory === category.title}
+              style={{ padding: '0.5rem 1rem', cursor: 'pointer', fontSize: 'var(--text-sm)' }}
             >
-              {cat.icon} {cat.title}
+              {category.icon} {category.title}
             </button>
           ))}
         </motion.div>
 
-        {/* Skill Category Cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-3xl)' }}>
-          {filteredCategories.map((category, catIndex) => (
-            <motion.div
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 'var(--space-lg)' }}>
+          {filteredCategories.map((category, index) => (
+            <motion.section
               key={category.title}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: 0.3 + catIndex * 0.1 }}
+              transition={{ duration: 0.45, delay: 0.15 + index * 0.06 }}
               className="glass-card"
-              style={{
-                padding: 'var(--space-2xl)',
-                position: 'relative',
-                overflow: 'hidden',
-              }}
+              aria-label={category.title}
+              style={{ padding: 'var(--space-xl)', position: 'relative', overflow: 'hidden' }}
             >
-              {/* Top accent line */}
-              <div
-                aria-hidden="true"
-                style={{
-                  position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  right: 0,
-                  height: '2px',
-                  background: 'var(--gradient-primary)',
-                  opacity: 0.6,
-                }}
-              />
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-md)', marginBottom: 'var(--space-xl)' }}>
-                <span style={{ fontSize: '1.5rem' }}>{category.icon}</span>
-                <h3
-                  style={{
-                    fontFamily: 'var(--font-heading)',
-                    fontSize: 'var(--text-xl)',
-                    fontWeight: 600,
-                    color: 'var(--color-text-primary)',
-                  }}
-                >
-                  {category.title}
-                </h3>
-                <span
-                  className="badge badge-purple"
-                  style={{ marginLeft: 'auto', fontSize: 'var(--text-xs)' }}
-                >
-                  {category.skills.length} skills
-                </span>
-              </div>
-
-              {/* Skill Rings Grid */}
-              <div
-                style={{
-                  display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(120px, 1fr))',
-                  gap: 'var(--space-xl)',
-                  justifyItems: 'center',
-                }}
-              >
-                {category.skills.map((skill, skillIndex) => (
-                  <SkillRing
-                    key={skill.name}
-                    name={skill.name}
-                    percentage={skill.percentage}
-                    delay={200 + catIndex * 100 + skillIndex * 80}
-                    size={100}
-                    strokeWidth={5}
-                  />
+              <div aria-hidden="true" style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '2px', background: 'var(--gradient-primary)' }} />
+              <h3 style={{ fontFamily: 'var(--font-heading)', fontSize: 'var(--text-lg)', fontWeight: 600, color: 'var(--color-text-primary)', marginBottom: 'var(--space-lg)' }}>
+                <span aria-hidden="true">{category.icon}</span> {category.title}
+              </h3>
+              <ul style={{ display: 'flex', flexWrap: 'wrap', gap: 'var(--space-sm)' }}>
+                {category.skills.map((skill) => (
+                  <li key={skill.name} className="badge" style={{ fontSize: 'var(--text-sm)', padding: '0.4rem 0.8rem' }}>
+                    {skill.name}
+                  </li>
                 ))}
-              </div>
-            </motion.div>
+              </ul>
+            </motion.section>
           ))}
         </div>
       </div>
