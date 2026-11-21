@@ -28,7 +28,7 @@ export default function Skills() {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
           >
-            Technologies and tools I work with
+            Technologies, tools, and areas I'm continuously developing
           </motion.p>
         </div>
 
