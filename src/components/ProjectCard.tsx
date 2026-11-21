@@ -93,30 +93,36 @@ export default function ProjectCard({ project, index }: ProjectCardProps) {
         </div>
 
         {/* Action buttons */}
-        <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-outline btn-sm"
-            aria-label={`View ${project.title} on GitHub`}
-            style={{ flex: 1, justifyContent: 'center' }}
-          >
-            <Github size={14} />
-            GitHub
-          </a>
-          <a
-            href={project.liveUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn btn-primary btn-sm"
-            aria-label={`View live demo of ${project.title}`}
-            style={{ flex: 1, justifyContent: 'center' }}
-          >
-            <ExternalLink size={14} />
-            {project.id === 3 ? 'View Details' : 'Live Demo'}
-          </a>
-        </div>
+        {(project.githubUrl.startsWith('https://') || project.liveUrl.startsWith('https://')) && (
+          <div style={{ display: 'flex', gap: 'var(--space-sm)' }}>
+            {project.githubUrl.startsWith('https://') && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-outline btn-sm"
+                aria-label={`View ${project.title} on GitHub`}
+                style={{ flex: 1, justifyContent: 'center' }}
+              >
+                <Github size={14} />
+                GitHub
+              </a>
+            )}
+            {project.liveUrl.startsWith('https://') && (
+              <a
+                href={project.liveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary btn-sm"
+                aria-label={`View ${project.title} live`}
+                style={{ flex: 1, justifyContent: 'center' }}
+              >
+                <ExternalLink size={14} />
+                {project.id === 3 ? 'View Details' : 'Live Demo'}
+              </a>
+            )}
+          </div>
+        )}
       </div>
     </motion.article>
   );
