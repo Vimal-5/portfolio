@@ -1,5 +1,3 @@
-import { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { useScrollProgress } from './hooks/useScrollProgress';
 import StarBackground from './components/StarBackground';
 import Navbar from './components/Navbar';
@@ -14,35 +12,11 @@ import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
 
-function LoadingScreen() {
-  return (
-    <motion.div
-      className="loading-screen"
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-    >
-      <div className="loading-spinner" />
-      <p className="loading-text">Loading Portfolio...</p>
-    </motion.div>
-  );
-}
-
 export default function App() {
-  const [isLoading, setIsLoading] = useState(true);
   const scrollProgress = useScrollProgress();
-
-  useEffect(() => {
-    // Simulate loading (wait for fonts/assets)
-    const timer = setTimeout(() => setIsLoading(false), 1200);
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
     <>
-      <AnimatePresence>
-        {isLoading && <LoadingScreen />}
-      </AnimatePresence>
-
       {/* Scroll Progress Bar */}
       <div
         className="scroll-progress"
