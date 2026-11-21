@@ -74,17 +74,19 @@ export default function Certifications() {
                 </div>
               </div>
 
-              <a
-                href={cert.verifiedUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline btn-sm"
-                style={{ alignSelf: 'flex-start' }}
-                aria-label={`View ${cert.title} certificate`}
-              >
-                <ExternalLink size={13} />
-                View Certificate
-              </a>
+              {cert.verifiedUrl.startsWith('https://') && (
+                <a
+                  href={cert.verifiedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                  style={{ alignSelf: 'flex-start' }}
+                  aria-label={`View ${cert.title} certificate`}
+                >
+                  <ExternalLink size={13} />
+                  View Certificate
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
