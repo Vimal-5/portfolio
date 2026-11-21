@@ -41,7 +41,7 @@ export default function Footer() {
           <div style={{ display: 'flex', gap: 'var(--space-md)' }}>
             {[
               { icon: <Github size={18} />, label: 'GitHub', href: 'https://github.com/Vimal-5' },
-              { icon: <Linkedin size={18} />, label: 'LinkedIn', href: '#' },
+              { icon: <Linkedin size={18} />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/vimal-vellaiyan/' },
               { icon: <Mail size={18} />, label: 'Email', href: 'mailto:vimalvijay561@gmail.com' },
             ].map((s) => (
               <a

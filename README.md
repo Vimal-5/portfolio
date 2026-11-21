@@ -1,175 +1,53 @@
-# 🚀 Vimal V. — Software Developer Portfolio
+# Vimal V. — Software Developer Portfolio
 
-A production-quality, interactive personal portfolio website with a **Space × Software Engineering** theme. Built with React, TypeScript, and Framer Motion.
+A responsive personal portfolio built with React, TypeScript, Vite, and Framer Motion. The visual direction combines a space-inspired theme with a clean software-engineering portfolio.
 
-![Portfolio Preview](https://img.shields.io/badge/status-live-00d4ff?style=for-the-badge)
-![React](https://img.shields.io/badge/React-19-4d7cff?style=for-the-badge&logo=react)
-![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?style=for-the-badge&logo=typescript)
-![Vite](https://img.shields.io/badge/Vite-8-646cff?style=for-the-badge&logo=vite)
+## Highlights
 
-## ✨ Features
+- Responsive navigation and section layouts
+- Space-inspired background and motion effects
+- Skills grouped by category
+- Project, achievement, certification, and education sections
+- Accessible labels, keyboard focus styles, and reduced-motion support
+- Contact form that opens a pre-filled email draft in the visitor's email app
 
-- **Space/Cosmic Theme** — Dark navy background with twinkling stars, orbital animations, and cosmic gradients
-- **Animated Skill Rings** — Circular SVG progress indicators that animate from 0% to target when scrolled into view
-- **Interactive Filtering** — Skills can be filtered by category
-- **Glassmorphism Cards** — Frosted glass UI cards with glow hover effects
-- **Smooth Scroll Animations** — Every section reveals with entrance animations
-- **Responsive Design** — Optimized for desktop (1440px), tablet (768px), and mobile (375px)
-- **Mobile Hamburger Menu** — Full-screen animated overlay navigation
-- **Contact Form** — Client-side validated form, ready for backend integration
-- **Scroll Progress Bar** — Top-of-page indicator showing scroll position
-- **Back to Top Button** — Floating action button appears after scrolling
-- **Accessibility** — Semantic HTML, keyboard navigation, reduced-motion support, ARIA labels
-- **Performance** — Canvas-based star background, optimized animations, lazy sections
+## Tech stack
 
-## 🛠 Technologies
+- React 19 + TypeScript
+- Vite
+- Framer Motion
+- Lucide React
+- Custom CSS design tokens
 
-| Category | Tech |
-|----------|------|
-| Framework | React 19 |
-| Language | TypeScript 5 |
-| Build Tool | Vite 8 |
-| Animations | Framer Motion |
-| Icons | Lucide React |
-| Styling | Vanilla CSS (custom design system) |
-
-## 📁 Folder Structure
-
-```
-portfolio/
-├── public/
-│   ├── favicon.svg
-│   └── resume.pdf          # Add your CV here
-├── src/
-│   ├── components/
-│   │   ├── Navbar.tsx
-│   │   ├── Hero.tsx
-│   │   ├── About.tsx
-│   │   ├── Skills.tsx
-│   │   ├── SkillRing.tsx
-│   │   ├── Projects.tsx
-│   │   ├── ProjectCard.tsx
-│   │   ├── Achievements.tsx
-│   │   ├── Certifications.tsx
-│   │   ├── Education.tsx
-│   │   ├── Contact.tsx
-│   │   ├── Footer.tsx
-│   │   ├── BackToTop.tsx
-│   │   └── StarBackground.tsx
-│   ├── data/
-│   │   ├── skills.ts
-│   │   ├── projects.ts
-│   │   ├── achievements.ts
-│   │   └── certifications.ts
-│   ├── hooks/
-│   │   ├── useScrollProgress.ts
-│   │   └── useMouseParallax.ts
-│   ├── App.tsx
-│   ├── main.tsx
-│   └── index.css
-├── .gitignore
-├── package.json
-├── tsconfig.json
-├── vite.config.ts
-└── README.md
-```
-
-## 🚀 Getting Started
-
-### Prerequisites
-
-- [Node.js](https://nodejs.org/) 18+ installed
-- npm or yarn
-
-### Installation
+## Run locally
 
 ```bash
-# Clone the repository
 git clone https://github.com/Vimal-5/portfolio.git
 cd portfolio
-
-# Install dependencies
 npm install
-```
-
-### Development
-
-```bash
 npm run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
-
-### Build for Production
+Create a production build with:
 
 ```bash
 npm run build
-```
-
-The production build will be output to the `dist/` directory.
-
-### Preview Production Build
-
-```bash
 npm run preview
 ```
 
-## 🔧 Customization
+## Personalise before deployment
 
-### Update Personal Information
+1. **Projects:** Update `src/data/projects.ts` with verified repository and live-demo URLs. Until real URLs are added, the portfolio hides those action links rather than showing dead placeholders.
+2. **Certificates:** Update `src/data/certifications.ts` with each real certificate verification URL. Certificate buttons appear only for valid HTTPS links.
+3. **Skills:** Review `src/data/skills.ts` and keep the self-assessed percentages realistic and explainable in an interview.
+4. **Resume:** Add the final PDF as `public/resume.pdf` before adding a download link to the interface.
+5. **Contact:** The form currently validates input and opens a pre-filled `mailto:` draft. For direct delivery without relying on the visitor's email app, connect a trusted form backend or email service.
+6. **Profiles:** Confirm that the GitHub and LinkedIn URLs point to the intended public profiles.
 
-- **URLs**: Search for `#` (placeholder URLs) in `src/data/*.ts` and `src/components/Hero.tsx`, `Contact.tsx`, `Footer.tsx`
-- **Email**: Replace `[PLACEHOLDER]` with your actual email
-- **Resume**: Add your `resume.pdf` to the `public/` folder
-- **Projects**: Edit `src/data/projects.ts` to add/modify projects
-- **Skills**: Edit `src/data/skills.ts` to update skill categories and percentages
+## Deployment
 
-### Connect Contact Form
-
-The contact form validates inputs client-side. To send real emails, integrate a service in `src/components/Contact.tsx` at the `// TODO: Connect to email service / backend` comment. Recommended services:
-
-- [EmailJS](https://www.emailjs.com/)
-- [Formspree](https://formspree.io/)
-- [Netlify Forms](https://docs.netlify.com/forms/setup/)
-
-## 🌐 Deployment
-
-### Vercel (Recommended)
-
-```bash
-npm install -g vercel
-vercel
-```
-
-### Netlify
-
-```bash
-npm run build
-# Drag and drop the `dist/` folder to Netlify
-```
-
-### GitHub Pages
-
-```bash
-npm run build
-# Push the `dist/` folder to a `gh-pages` branch
-```
-
-## 🔮 Future Improvements
-
-- [ ] Blog/articles section
-- [ ] Dark/light theme toggle
-- [ ] Project detail modal with screenshots
-- [ ] Testimonials section
-- [ ] Three.js 3D planet background option
-- [ ] i18n internationalization
-- [ ] Analytics integration
-- [ ] PWA support
-
-## 📄 License
-
-This project is open source and available under the [MIT License](LICENSE).
+The app can be deployed to Vercel, Netlify, or another static hosting provider that supports Vite. Set the build command to `npm run build` and the output directory to `dist`.
 
 ---
 
-**Designed & Built by Vimal V.** 🚀
+Designed and built by Vimal V.

@@ -44,7 +44,7 @@ export default function About() {
           >
             <p style={{ fontSize: 'var(--text-lg)', color: 'var(--color-text-secondary)', lineHeight: 1.8, marginBottom: 'var(--space-lg)' }}>
               I'm <span style={{ color: 'var(--color-accent-cyan)', fontWeight: 600 }}>Vimal V.</span>, an aspiring software developer
-              currently pursuing my <strong style={{ color: 'var(--color-text-primary)' }}>B.E. in Information Technology</strong> at
+              and B.E. Information Technology student at
               Sri Shanmugha College of Engineering and Technology, Tamil Nadu, India.
             </p>
             <p style={{ fontSize: 'var(--text-base)', color: 'var(--color-text-secondary)', lineHeight: 1.8, marginBottom: 'var(--space-xl)' }}>

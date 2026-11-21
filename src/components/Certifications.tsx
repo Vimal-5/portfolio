@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { certifications } from '../data/certifications';
-import { ExternalLink, BadgeCheck } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 export default function Certifications() {
   const ref = useRef(null);
@@ -69,22 +69,23 @@ export default function Certifications() {
                     <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)' }}>
                       {cert.platform}
                     </span>
-                    <BadgeCheck size={14} style={{ color: 'var(--color-accent-cyan)' }} />
                   </div>
                 </div>
               </div>
 
-              <a
-                href={cert.verifiedUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-outline btn-sm"
-                style={{ alignSelf: 'flex-start' }}
-                aria-label={`View ${cert.title} certificate`}
-              >
-                <ExternalLink size={13} />
-                View Certificate
-              </a>
+              {cert.verifiedUrl.startsWith('https://') && (
+                <a
+                  href={cert.verifiedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-outline btn-sm"
+                  style={{ alignSelf: 'flex-start' }}
+                  aria-label={`View ${cert.title} certificate`}
+                >
+                  <ExternalLink size={13} />
+                  View Certificate
+                </a>
+              )}
             </motion.div>
           ))}
         </div>
