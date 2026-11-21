@@ -7,7 +7,6 @@ export default function Contact() {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
-  const [isSubmitted, setIsSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
   const validate = () => {
@@ -24,11 +23,11 @@ export default function Contact() {
     const newErrors = validate();
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0) {
-      // TODO: Connect to email service / backend
-      // For now, just show success UI
-      setIsSubmitted(true);
-      setFormData({ name: '', email: '', message: '' });
-      setTimeout(() => setIsSubmitted(false), 5000);
+      const subject = encodeURIComponent(`Portfolio enquiry from ${formData.name.trim()}`);
+      const body = encodeURIComponent(
+        `Name: ${formData.name.trim()}\nEmail: ${formData.email.trim()}\n\n${formData.message.trim()}`
+      );
+      window.location.href = `mailto:vimalvijay561@gmail.com?subject=${subject}&body=${body}`;
     }
   };
 
@@ -156,7 +155,7 @@ export default function Contact() {
             <div style={{ display: 'flex', gap: 'var(--space-md)', marginTop: 'var(--space-md)' }}>
               {[
                 { icon: <Github size={20} />, label: 'GitHub', href: 'https://github.com/Vimal-5' },
-                { icon: <Linkedin size={20} />, label: 'LinkedIn', href: '#' },
+                { icon: <Linkedin size={20} />, label: 'LinkedIn', href: 'https://www.linkedin.com/in/vimal-vellaiyan/' },
                 { icon: <Mail size={20} />, label: 'Email', href: 'mailto:vimalvijay561@gmail.com' },
               ].map((s) => (
                 <a
@@ -205,23 +204,6 @@ export default function Contact() {
               style={{ padding: 'var(--space-2xl)', display: 'flex', flexDirection: 'column', gap: 'var(--space-lg)' }}
               noValidate
             >
-              {isSubmitted && (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.95 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  style={{
-                    padding: 'var(--space-md)',
-                    borderRadius: 'var(--radius-md)',
-                    background: 'rgba(0, 212, 255, 0.08)',
-                    border: '1px solid rgba(0, 212, 255, 0.2)',
-                    color: 'var(--color-accent-cyan)',
-                    fontSize: 'var(--text-sm)',
-                    textAlign: 'center',
-                  }}
-                >
-                  ✓ Message received! (Connect a backend to send real emails)
-                </motion.div>
-              )}
 
               <div>
                 <label htmlFor="contact-name" style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)', marginBottom: '0.35rem', display: 'block' }}>
@@ -237,6 +219,7 @@ export default function Contact() {
                   onBlur={inputBlurHandler}
                   style={inputStyle}
                   aria-required="true"
+                  required
                 />
                 {errors.name && <p style={{ color: '#ef4444', fontSize: 'var(--text-xs)', marginTop: '0.25rem' }}>{errors.name}</p>}
               </div>
@@ -255,6 +238,7 @@ export default function Contact() {
                   onBlur={inputBlurHandler}
                   style={inputStyle}
                   aria-required="true"
+                  required
                 />
                 {errors.email && <p style={{ color: '#ef4444', fontSize: 'var(--text-xs)', marginTop: '0.25rem' }}>{errors.email}</p>}
               </div>
@@ -272,13 +256,14 @@ export default function Contact() {
                   onBlur={inputBlurHandler as any}
                   style={{ ...inputStyle, minHeight: '140px', resize: 'vertical' }}
                   aria-required="true"
+                  required
                 />
                 {errors.message && <p style={{ color: '#ef4444', fontSize: 'var(--text-xs)', marginTop: '0.25rem' }}>{errors.message}</p>}
               </div>
 
               <button type="submit" className="btn btn-primary" style={{ alignSelf: 'flex-start' }}>
                 <Send size={16} />
-                Send Message
+                Open Email App
               </button>
             </form>
           </motion.div>
