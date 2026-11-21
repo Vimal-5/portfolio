@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { certifications } from '../data/certifications';
-import { ExternalLink, BadgeCheck } from 'lucide-react';
+import { ExternalLink } from 'lucide-react';
 
 export default function Certifications() {
   const ref = useRef(null);
@@ -69,7 +69,6 @@ export default function Certifications() {
                     <span style={{ fontSize: 'var(--text-sm)', color: 'var(--color-text-secondary)' }}>
                       {cert.platform}
                     </span>
-                    <BadgeCheck size={14} style={{ color: 'var(--color-accent-cyan)' }} />
                   </div>
                 </div>
               </div>
