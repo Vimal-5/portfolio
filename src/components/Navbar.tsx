@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Download } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useActiveSection } from '../hooks/useScrollProgress';
 
 const navItems = [
@@ -132,16 +132,6 @@ export default function Navbar() {
               {item.label}
             </button>
           ))}
-          <a
-            href="/resume.pdf"
-            download
-            className="btn btn-primary btn-sm"
-            style={{ marginLeft: '0.75rem' }}
-            aria-label="Download CV"
-          >
-            <Download size={14} />
-            Download CV
-          </a>
         </div>
 
         {/* Mobile Hamburger */}
@@ -207,16 +197,6 @@ export default function Navbar() {
                 {item.label}
               </motion.button>
             ))}
-            <a
-              href="/resume.pdf"
-              download
-              className="btn btn-primary"
-              style={{ marginTop: '1rem' }}
-              onClick={() => setIsMobileOpen(false)}
-            >
-              <Download size={16} />
-              Download CV
-            </a>
           </motion.div>
         )}
       </AnimatePresence>
